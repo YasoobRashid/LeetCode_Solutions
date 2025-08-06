@@ -1,15 +1,19 @@
 class Solution {
 
     public boolean canEatAll(int[] piles, int speed, int h){
-        int totalHours= 0;
+        long totalHours= 0;
         for(int pile: piles){
-            totalHours += (pile + speed-1)/speed;
+            int div = pile/speed;
+            totalHours+= div;
+            if(pile%speed!=0){
+                totalHours++;
+            }
         }
         return totalHours<=h;
     }
     public int minEatingSpeed(int[] piles, int h) {
         int lo =1;
-        int hi = Integer.MAX_VALUE;
+        int hi = Arrays.stream(piles).max().getAsInt();
         int result = hi;
 
         while(lo<=hi){
