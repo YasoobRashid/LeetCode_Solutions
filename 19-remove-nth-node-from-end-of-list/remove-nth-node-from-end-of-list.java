@@ -25,10 +25,10 @@ class Solution {
             return head.next;
         }
 
-        int indexToSearch = size - n;
+        int prevNode = size - n;
         ListNode prev = head;
         int i = 1;
-        while(i<indexToSearch){
+        while(i<prevNode){
             prev = prev.next;
             i++;
         }
