@@ -13,6 +13,10 @@ class Solution {
                 start++;
             }
         }
-        return (minLen == Integer.MAX_VALUE)?0:minLen ;
+
+        if(minLen == Integer.MAX_VALUE){
+            return 0;
+        }
+        return minLen ;
     }
 }
