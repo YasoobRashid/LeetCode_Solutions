@@ -13,27 +13,54 @@
  *     }
  * }
  */
-class Solution {
+public class Solution {
+    // global variable solution
+
+    // int maxDiameter = 0; 
+
+    // public int diameterOfBinaryTree(TreeNode root) {
+    //     height(root);
+    //     return maxDiameter;
+    // }
+
+    // private int height(TreeNode node) {
+    //     if (node == null) return 0;
+
+    //     int leftHeight = height(node.left);
+    //     int rightHeight = height(node.right);
+
+    //     maxDiameter = Math.max(maxDiameter, leftHeight + rightHeight);
+
+    //     return 1 + Math.max(leftHeight, rightHeight);
+    // }
+
     public int diameterOfBinaryTree(TreeNode root) {
-        if(root==null){
-            return 0;
-        }
-        int leftHeight = height(root.left);
-        int rightHeight = height(root.right);
-
-        int diameterTRoot = leftHeight + rightHeight;
-
-        int leftDiameter = diameterOfBinaryTree(root.left);
-        int rightDiameter = diameterOfBinaryTree(root.right);
-
-        return Math.max(diameterTRoot, Math.max(leftDiameter, rightDiameter));
+        return helper(root).diameter;
     }
 
-    int height(TreeNode node){
-        if(node==null ){
-            return 0;
+    private Pair helper(TreeNode root) {
+        if (root == null) {
+            return new Pair(0, 0);
         }
 
-        return 1 + Math.max(height(node.left), height(node.right));
+        Pair left = helper(root.left);
+        Pair right = helper(root.right);
+
+        int height = 1 + Math.max(left.height, right.height);
+        int diameterThroughRoot = left.height + right.height;
+
+        int maxDiameter = Math.max(diameterThroughRoot, Math.max(left.diameter, right.diameter));
+
+        return new Pair(height, maxDiameter);
+    }
+}
+
+class Pair {
+    int height;
+    int diameter;
+
+    Pair(int height, int diameter) {
+        this.height = height;
+        this.diameter = diameter;
     }
 }
