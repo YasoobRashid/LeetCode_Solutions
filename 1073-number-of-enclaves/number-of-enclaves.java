@@ -51,10 +51,7 @@ class Solution {
                 int nr = p.row + d[0];
                 int nc = p.col + d[1];
 
-                if (nr >= 0 && nr < grid.length &&
-                    nc >= 0 && nc < grid[0].length &&
-                    grid[nr][nc] == 1) {
-
+                if (nr >= 0 && nr < grid.length && nc >= 0 && nc < grid[0].length && grid[nr][nc] == 1) {
                     q.offer(new Pair(nr, nc));
                     grid[nr][nc] = 0;
                 }
