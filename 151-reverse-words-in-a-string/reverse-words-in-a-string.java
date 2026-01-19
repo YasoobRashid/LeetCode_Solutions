@@ -1,15 +1,30 @@
 class Solution {
     public String reverseWords(String s) {
-        String[] split = s.trim().split("\\s+");
+        //optimal approach using two pointer
 
-        StringBuilder sb = new StringBuilder();
-
-        for(int i = split.length - 1; i>=0;i--){
-            sb.append(split[i]);
-            if(i!=0){
-                sb.append(" ");
+        String res = "";
+        int right = s.length()-1;
+        int end;
+        int start;
+        while(right>=0){
+            while(right>=0 && s.charAt(right)== ' '){
+                right--;
             }
+            end = right;
+
+            if(right<0){
+                break;
+            }
+
+            while(right>=0 && s.charAt(right)!=' '){
+                right--;
+            }
+
+            start = right+1;
+
+            res += s.substring(start,end+1)+" ";
         }
-        return sb.toString();
+
+        return res.trim();
     }
 }
