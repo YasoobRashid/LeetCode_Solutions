@@ -5,9 +5,8 @@ class Solution {
 
         int sum =0;
 
-        for(int i =0; i<n;i++){
+        for(int i =0; i<n;i+=2){
             sum += nums[i];
-            i++;
         }
 
         return sum;
