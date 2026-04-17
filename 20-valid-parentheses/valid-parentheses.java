@@ -3,23 +3,29 @@ class Solution {
         Stack<Character> st = new Stack<>();
 
         for(int i =0; i<s.length(); i++){
-            char curr = s.charAt(i);
-            if(!st.isEmpty()){
-                char last = st.peek();
-                if(isPair(last, curr)){
+            char ch = s.charAt(i);
+            if(ch=='('|| ch=='['|| ch=='{'){
+                st.push(ch);
+            }
+            else{
+                if(st.isEmpty())return false;
+                else if (ch==')'&& st.peek()=='('){
                     st.pop();
-                    continue;
+                }
+                else if (ch==']'&& st.peek()=='['){
+                    st.pop();
+                }
+                else if (ch=='}'&& st.peek()=='{'){
+                    st.pop();
+                }
+                else{
+                    return false;
                 }
             }
-            st.push(curr);
+            
         }    
+        return st.isEmpty();
 
-        return st.isEmpty();    
-    }
-
-    boolean isPair(char last, char curr){
-        return (last =='(' && curr==')') ||
-                (last =='{' && curr=='}') ||
-                (last == '[' && curr ==']');
+  
     }
 }
